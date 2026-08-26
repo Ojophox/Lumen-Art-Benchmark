@@ -1,0 +1,894 @@
+{
+  "name": "LUMEN",
+  "version": "0.1.0-alpha",
+  "license_note": "Starter text cases are provided for evaluation prototyping; choose repository and dataset licenses before public release.",
+  "description": "Public development probes for semantic art-direction reasoning.",
+  "task_count": 21,
+  "tasks": [
+    {
+      "id": "lumen-vs-001",
+      "capability": "visual_storytelling",
+      "task_type": "critique",
+      "context": "Sequential illustration",
+      "prompt": "A three-panel sequence should show Mina realizing the friendly guide has stolen her map. Diagnose why the reveal is not reading and give the top two revisions.",
+      "evidence": [
+        "Panel 1: Mina studies a wall carving; guide stands behind her holding nothing.",
+        "Panel 2: close-up of the guide smiling; map is cropped outside frame.",
+        "Panel 3: Mina looks angry toward camera; guide and map are absent."
+      ],
+      "required_concepts": [
+        "cause-and-effect bridge",
+        "show map transfer or possession",
+        "eyeline connects Mina to guide",
+        "reveal must be visible"
+      ],
+      "failure_traps": [
+        "generic add detail",
+        "change rendering style",
+        "invent dialogue as sole fix"
+      ],
+      "active_dimensions": [
+        "story_readability",
+        "composition_intent",
+        "revision_quality"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-vs-002",
+      "capability": "visual_storytelling",
+      "task_type": "pairwise_selection",
+      "context": "Keyframe selection",
+      "prompt": "Choose A or B for the story beat 'the child decides to enter the forbidden greenhouse,' then explain one improvement to the winner.",
+      "evidence": [
+        "A: child centered, already inside, smiling at camera; locked gate behind.",
+        "B: child small at lower left, hand on partly opened gate, bright greenhouse shape beyond, long shadow points back toward home."
+      ],
+      "required_concepts": [
+        "B",
+        "decision threshold",
+        "contrast between safety and unknown",
+        "directional staging"
+      ],
+      "failure_traps": [
+        "choose higher detail",
+        "equate brightness with quality"
+      ],
+      "active_dimensions": [
+        "story_readability",
+        "composition_intent",
+        "brief_alignment"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-vs-003",
+      "capability": "visual_storytelling",
+      "task_type": "planning",
+      "context": "Single-page illustration",
+      "prompt": "Plan a single image that communicates: two rivals must cooperate before a flood reaches their village. No text. Specify focal beat, foreground/midground/background roles, and one recurring visual motif.",
+      "evidence": [
+        "The image must communicate urgency, rivalry, cooperation, and threatened village without captions."
+      ],
+      "required_concepts": [
+        "shared action",
+        "visible flood threat",
+        "village stakes",
+        "rivalry encoded in pose or design",
+        "motif reinforces convergence"
+      ],
+      "failure_traps": [
+        "poster lineup",
+        "unreadable equal emphasis",
+        "pure mood without action"
+      ],
+      "active_dimensions": [
+        "story_readability",
+        "composition_intent",
+        "brief_alignment"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-ic-001",
+      "capability": "image_consistency",
+      "task_type": "critique",
+      "context": "Character sequence",
+      "prompt": "Identify continuity breaks that would most threaten character recognition across these three shots. Rank fixes.",
+      "evidence": [
+        "Model sheet: Niko has a triangular forelock, chipped left incisor, short green jacket, red right glove.",
+        "Shot 1: forelock round; tooth hidden; green long coat; red right glove.",
+        "Shot 2: triangular forelock; chipped right incisor; short blue jacket; red left glove."
+      ],
+      "required_concepts": [
+        "forelock shape",
+        "incisor side",
+        "jacket length and color",
+        "glove side",
+        "rank identity anchors before minor details"
+      ],
+      "failure_traps": [
+        "treat pose change as inconsistency",
+        "list without prioritizing"
+      ],
+      "active_dimensions": [
+        "cross_image_continuity",
+        "revision_quality"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-ic-002",
+      "capability": "image_consistency",
+      "task_type": "planning",
+      "context": "Location bible",
+      "prompt": "Create a compact continuity checklist for five scenes in the same kitchen across dawn, noon, and night. Preserve identity while allowing changing mood.",
+      "evidence": [
+        "Fixed architecture: north window, red island, two pendant lights, cracked tile by pantry.",
+        "Variable story state: weather, clutter, food preparation, time of day."
+      ],
+      "required_concepts": [
+        "separate invariants from variables",
+        "architecture",
+        "prop state",
+        "light direction",
+        "time progression"
+      ],
+      "failure_traps": [
+        "freeze all lighting",
+        "treat clutter as continuity error",
+        "ignore spatial orientation"
+      ],
+      "active_dimensions": [
+        "cross_image_continuity",
+        "composition_intent",
+        "revision_quality"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-ic-003",
+      "capability": "image_consistency",
+      "task_type": "pairwise_selection",
+      "context": "World-rule continuity",
+      "prompt": "A story establishes that magic light casts no shadows. Choose the compatible sequel image description and explain the governing rule.",
+      "evidence": [
+        "A: magic orb lights faces; every figure has a hard shadow away from the orb.",
+        "B: magic orb lights faces; moonlight alone produces soft shadows on the floor."
+      ],
+      "required_concepts": [
+        "B",
+        "magic light casts no shadows",
+        "moonlight may cast shadows",
+        "distinguish light sources"
+      ],
+      "failure_traps": [
+        "reject all shadows",
+        "choose based on mood"
+      ],
+      "active_dimensions": [
+        "cross_image_continuity",
+        "brief_alignment"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-ci-001",
+      "capability": "compositional_intentionality",
+      "task_type": "critique",
+      "context": "Adventure key art",
+      "prompt": "The client says the hero feels less important than the explosion. Diagnose the hierarchy problem and propose the smallest effective revision set.",
+      "evidence": [
+        "Hero occupies 12% of frame near center in mid-value armor.",
+        "Explosion occupies 45% of frame, highest contrast and saturation.",
+        "Weapon and smoke diagonals point out of frame."
+      ],
+      "required_concepts": [
+        "value and scale hierarchy",
+        "redirect diagonals",
+        "reduce explosion dominance or increase hero contrast",
+        "minimal revision"
+      ],
+      "failure_traps": [
+        "add detail everywhere",
+        "only enlarge title",
+        "style change"
+      ],
+      "active_dimensions": [
+        "composition_intent",
+        "revision_quality",
+        "brief_alignment"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-ci-002",
+      "capability": "compositional_intentionality",
+      "task_type": "pairwise_selection",
+      "context": "Editorial illustration",
+      "prompt": "Choose the composition that best supports 'quiet isolation inside a crowded commute' and explain why.",
+      "evidence": [
+        "A: all passengers equally sharp, evenly spaced, equal values; subject centered and smiling.",
+        "B: repeating commuter silhouettes frame a small subject; nearby faces overlap; a quiet value pocket isolates the subject's gaze."
+      ],
+      "required_concepts": [
+        "B",
+        "contrastive isolation",
+        "repetition",
+        "value pocket",
+        "crowding versus psychological distance"
+      ],
+      "failure_traps": [
+        "choose symmetry by default",
+        "describe without linking to intent"
+      ],
+      "active_dimensions": [
+        "composition_intent",
+        "story_readability",
+        "brief_alignment"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-ci-003",
+      "capability": "compositional_intentionality",
+      "task_type": "planning",
+      "context": "Mobile game event banner",
+      "prompt": "Plan a 16:9 banner that must crop safely to 1:1 and 9:16 while preserving boss, player, and reward hierarchy.",
+      "evidence": [
+        "Required: boss threat first, player response second, reward chest third.",
+        "UI reserves 15% of top and 20% of bottom."
+      ],
+      "required_concepts": [
+        "safe central action zone",
+        "crop-aware staging",
+        "reserved UI space",
+        "three-level hierarchy",
+        "silhouette separation"
+      ],
+      "failure_traps": [
+        "place key content at edges",
+        "equal focal weight",
+        "ignore UI"
+      ],
+      "active_dimensions": [
+        "composition_intent",
+        "brief_alignment",
+        "revision_quality"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-rp-001",
+      "capability": "revision_prioritization",
+      "task_type": "critique",
+      "context": "Concept review",
+      "prompt": "The image is attractive but the pitch is failing. Give a three-pass revision order and say what not to polish yet.",
+      "evidence": [
+        "Brief: a healer secretly using forbidden technology.",
+        "Image: healer in generic fantasy room, hands hidden, technology appears as tiny background prop.",
+        "Rendering is polished; costume materials are unfinished."
+      ],
+      "required_concepts": [
+        "clarify forbidden technology action first",
+        "stage secrecy second",
+        "costume polish later",
+        "sequence revisions by narrative leverage"
+      ],
+      "failure_traps": [
+        "polish materials first",
+        "unranked list",
+        "replace entire concept without preserving intent"
+      ],
+      "active_dimensions": [
+        "revision_quality",
+        "story_readability",
+        "brief_alignment"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-rp-002",
+      "capability": "revision_prioritization",
+      "task_type": "pairwise_selection",
+      "context": "Paintover notes",
+      "prompt": "Choose the more actionable note and explain what makes it production-usable.",
+      "evidence": [
+        "A: Make it more cinematic and dynamic.",
+        "B: Lower the camera to the courier's shoulder, overlap the pursuer with the exit sign, and reserve the brightest value for the escape route."
+      ],
+      "required_concepts": [
+        "B",
+        "specific variables",
+        "causal relationship to intended read",
+        "bounded change"
+      ],
+      "failure_traps": [
+        "longer equals better",
+        "taste assertion without mechanism"
+      ],
+      "active_dimensions": [
+        "revision_quality",
+        "composition_intent"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-rp-003",
+      "capability": "revision_prioritization",
+      "task_type": "planning",
+      "context": "Daily review",
+      "prompt": "You have 30 minutes with an artist. Turn six issues into a maximum of three ordered notes that unlock the next pass.",
+      "evidence": [
+        "Issues: unclear focal point; tangent at hero's sword; background perspective off; secondary costume trim unfinished; monster silhouette merges with doorway; dust color inconsistent."
+      ],
+      "required_concepts": [
+        "focal hierarchy first",
+        "monster silhouette separation",
+        "structural perspective or tangent before trim and dust",
+        "maximum three notes"
+      ],
+      "failure_traps": [
+        "six-item restatement",
+        "polish-first ordering",
+        "no rationale"
+      ],
+      "active_dimensions": [
+        "revision_quality",
+        "composition_intent",
+        "uncertainty_communication"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-bt-001",
+      "capability": "brief_translation",
+      "task_type": "planning",
+      "context": "Visual development brief",
+      "prompt": "Translate 'optimistic survival, handmade not post-apocalyptic' into five concrete visual rules and two things to avoid.",
+      "evidence": [
+        "Audience: family co-op game.",
+        "Setting: floating settlement built from repaired household objects.",
+        "Must remain readable at medium camera distance."
+      ],
+      "required_concepts": [
+        "warm or buoyant shape language",
+        "repair as care",
+        "readable silhouettes",
+        "selective wear",
+        "communal evidence",
+        "avoid grim scarcity clichés"
+      ],
+      "failure_traps": [
+        "vague inspirational adjectives only",
+        "rust and spikes",
+        "ignore gameplay distance"
+      ],
+      "active_dimensions": [
+        "brief_alignment",
+        "composition_intent",
+        "revision_quality"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-bt-002",
+      "capability": "brief_translation",
+      "task_type": "critique",
+      "context": "Cover review",
+      "prompt": "Test this cover concept against the brief. Separate requirement misses from taste preferences.",
+      "evidence": [
+        "Brief: middle-grade mystery; funny first, eerie second; two siblings; coastal town; no visible villain.",
+        "Concept: one terrified child alone, photorealistic severed hand in foreground, black city skyline, villain face in clouds."
+      ],
+      "required_concepts": [
+        "missing sibling",
+        "wrong tone and audience intensity",
+        "coastal setting absent",
+        "visible villain violates constraint",
+        "label taste separately"
+      ],
+      "failure_traps": [
+        "personal style preference as requirement",
+        "only discuss technique"
+      ],
+      "active_dimensions": [
+        "brief_alignment",
+        "story_readability",
+        "uncertainty_communication"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-bt-003",
+      "capability": "brief_translation",
+      "task_type": "pairwise_selection",
+      "context": "Pitch direction",
+      "prompt": "Choose the direction that better satisfies 'ancient institution adapting badly to modern life' without relying on text.",
+      "evidence": [
+        "A: pristine glass office with generic robed figures using identical tablets.",
+        "B: monumental stone archive retrofitted with exposed cables, ceremonial scribes crowding around one blinking kiosk, old filing rituals repurposed around it."
+      ],
+      "required_concepts": [
+        "B",
+        "old system visibly collides with new function",
+        "behavior communicates maladaptation",
+        "specific environmental storytelling"
+      ],
+      "failure_traps": [
+        "choose newer-looking option",
+        "explain only aesthetics"
+      ],
+      "active_dimensions": [
+        "brief_alignment",
+        "story_readability",
+        "composition_intent"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-tu-001",
+      "capability": "taste_uncertainty",
+      "task_type": "critique",
+      "context": "Ambiguous feedback",
+      "prompt": "The stakeholder says, 'It doesn't feel premium.' Respond as an art-direction assistant before prescribing a redesign.",
+      "evidence": [
+        "No audience, channel, competitors, or definition of premium is supplied.",
+        "Current work is a product splash image with restrained color and large negative space."
+      ],
+      "required_concepts": [
+        "acknowledge ambiguity",
+        "ask bounded diagnostic questions",
+        "offer testable hypotheses",
+        "do not assume maximalism or minimalism"
+      ],
+      "failure_traps": [
+        "declare one universal premium style",
+        "rewrite without clarification",
+        "hide uncertainty"
+      ],
+      "active_dimensions": [
+        "uncertainty_communication",
+        "revision_quality",
+        "brief_alignment"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-tu-002",
+      "capability": "taste_uncertainty",
+      "task_type": "pairwise_selection",
+      "context": "Stakeholder alignment",
+      "prompt": "Choose the stronger response to 'make the mascot cooler' and state the next review artifact.",
+      "evidence": [
+        "A: I'll add sunglasses, sharper shapes, and neon blue.",
+        "B: Is 'cooler' meant to increase aspirational confidence, age the mascot up, or align with a competitor? I can show three silhouette thumbnails varying only that axis."
+      ],
+      "required_concepts": [
+        "B",
+        "disambiguate goal",
+        "controlled variants",
+        "silhouette thumbnails",
+        "one-axis comparison"
+      ],
+      "failure_traps": [
+        "assume trend signals",
+        "open-ended interrogation without action"
+      ],
+      "active_dimensions": [
+        "uncertainty_communication",
+        "revision_quality"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-tu-003",
+      "capability": "taste_uncertainty",
+      "task_type": "planning",
+      "context": "Style calibration",
+      "prompt": "Design a review method for choosing between playful and solemn directions without turning the decision into personal taste.",
+      "evidence": [
+        "Product goal: build trust with first-time caregivers.",
+        "Audience range and cultural context are not yet validated."
+      ],
+      "required_concepts": [
+        "define audience outcomes",
+        "matched-content variants",
+        "evaluation questions",
+        "document assumptions",
+        "small audience test or stakeholder rubric"
+      ],
+      "failure_traps": [
+        "majority vote without criteria",
+        "claim universal emotion",
+        "change many variables at once"
+      ],
+      "active_dimensions": [
+        "uncertainty_communication",
+        "brief_alignment",
+        "revision_quality"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-xm-001",
+      "capability": "cross_modal_reasoning",
+      "task_type": "critique",
+      "context": "Prompt-to-image audit",
+      "prompt": "Audit whether the described output satisfies the prompt, distinguishing literal compliance from semantic success.",
+      "evidence": [
+        "Prompt: an exhausted paramedic experiences one quiet second after chaos; compassionate, not heroic.",
+        "Output: low-angle paramedic centered against sunrise, spotless uniform, cheering crowd, medal-like lens flare, ambulance barely visible."
+      ],
+      "required_concepts": [
+        "literal subject present",
+        "heroic framing conflicts with compassionate quiet",
+        "lack of fatigue and aftermath",
+        "revise pose, camera, evidence of chaos, crowd"
+      ],
+      "failure_traps": [
+        "declare compliant because paramedic exists",
+        "equate sunrise with hope",
+        "only mention missing objects"
+      ],
+      "active_dimensions": [
+        "story_readability",
+        "brief_alignment",
+        "revision_quality"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-xm-002",
+      "capability": "cross_modal_reasoning",
+      "task_type": "planning",
+      "context": "Reference synthesis",
+      "prompt": "Given three reference intentions, synthesize a direction without copying any one reference.",
+      "evidence": [
+        "Reference 1 contributes compressed depth and social density.",
+        "Reference 2 contributes a muted mineral palette.",
+        "Reference 3 contributes playful asymmetrical props.",
+        "Original brief: neighborhood science fair run by children."
+      ],
+      "required_concepts": [
+        "assign each reference to a distinct controllable attribute",
+        "integrate with science-fair story",
+        "avoid artist/style imitation",
+        "state hierarchy and exclusions"
+      ],
+      "failure_traps": [
+        "blend everything vaguely",
+        "name a living artist",
+        "copy signature motifs"
+      ],
+      "active_dimensions": [
+        "brief_alignment",
+        "composition_intent",
+        "uncertainty_communication"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "id": "lumen-xm-003",
+      "capability": "cross_modal_reasoning",
+      "task_type": "pairwise_selection",
+      "context": "Sequence coherence",
+      "prompt": "Choose the ending frame that resolves the established visual motif and emotional arc.",
+      "evidence": [
+        "Setup: throughout the story, two estranged sisters occupy opposite sides of doorframes; a yellow scarf passes between them.",
+        "A: finale shows both centered together outside, each holding one end of the scarf; the doorway is behind and open.",
+        "B: finale shows a scenic town wide shot; the scarf hangs alone on a closed door."
+      ],
+      "required_concepts": [
+        "A",
+        "spatial motif resolves",
+        "shared scarf externalizes repaired bond",
+        "open doorway reverses separation"
+      ],
+      "failure_traps": [
+        "choose scenic scale",
+        "ignore established motif"
+      ],
+      "active_dimensions": [
+        "story_readability",
+        "cross_image_continuity",
+        "composition_intent"
+      ],
+      "response_schema": {
+        "required": [
+          "id",
+          "analysis",
+          "intent",
+          "recommendations",
+          "continuity_flags",
+          "questions",
+          "confidence"
+        ],
+        "confidence_range": [
+          0,
+          1
+        ]
+      }
+    }
+  ]
+}

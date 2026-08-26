@@ -1,0 +1,81 @@
+benchmark: LUMEN
+version: 0.1.0-alpha
+score_range: [0, 4]
+normalization: "For each case, renormalize the weights of active_dimensions to sum to 1.0."
+
+scale_anchors:
+  0: "Absent, contradictory, or unsupported; not usable."
+  1: "Notices a surface issue but misses intent or gives generic advice."
+  2: "Partly correct and usable; important gaps or weak prioritization remain."
+  3: "Correct, specific, causal, and production-usable with only minor gaps."
+  4: "Expert-level: preserves intent, resolves tradeoffs, and proposes the smallest high-leverage change."
+
+dimensions:
+  story_readability:
+    weight: 0.22
+    question: "Does the response identify and strengthen the intended story beat, emotional read, and cause/effect?"
+    evidence: ["names the intended audience read", "links staging to narrative", "distinguishes clarity from polish"]
+  cross_image_continuity:
+    weight: 0.18
+    question: "Does it track stable identity, state changes, spatial rules, and world logic across images?"
+    evidence: ["separates invariants from allowed variation", "ranks identity-critical breaks", "uses sequence evidence"]
+  composition_intent:
+    weight: 0.18
+    question: "Does it reason about hierarchy, eyeflow, silhouette, value, depth, cropping, and negative space in service of intent?"
+    evidence: ["identifies focal order", "connects formal choices to viewer behavior", "accounts for format constraints"]
+  revision_quality:
+    weight: 0.18
+    question: "Are recommendations concrete, prioritized, minimal, and feasible for the next production pass?"
+    evidence: ["orders by leverage", "names controllable variables", "states why each change works"]
+  brief_alignment:
+    weight: 0.14
+    question: "Does it satisfy audience, tone, story, platform, and explicit constraints without substituting personal taste?"
+    evidence: ["checks every hard constraint", "separates requirement from preference", "preserves the core goal"]
+  uncertainty_communication:
+    weight: 0.10
+    question: "Does it avoid invented evidence, calibrate confidence, and ask bounded questions when intent is underspecified?"
+    evidence: ["marks assumptions", "asks decision-relevant questions", "offers controlled alternatives"]
+
+penalties:
+  unsupported_visual_claim:
+    per_instance: -0.25
+    floor: -1.0
+  style_imitation_of_living_artist:
+    per_instance: -1.0
+    floor: -2.0
+  generic_advice_unlinked_to_evidence:
+    per_instance: -0.15
+    floor: -0.6
+  ignores_hard_constraint:
+    per_instance: -0.5
+    floor: -1.5
+
+reporting:
+  required:
+    - weighted_overall_mean
+    - per_capability_mean
+    - per_dimension_mean
+    - unsupported_claim_rate
+    - priority_precision_at_1
+    - score_distribution
+    - bootstrap_95_percent_ci
+    - inter_rater_agreement
+  agreement:
+    statistic: "Krippendorff's alpha (ordinal) or weighted kappa for two raters"
+    pilot_threshold: 0.67
+    public_ranking_target: 0.80
+    action_below_threshold: "Do not hide disagreement. Publish it, inspect cases, clarify anchors, and re-rate the affected subset."
+
+annotation_protocol:
+  blind_model_identity: true
+  randomize_response_order: true
+  shared_calibration_cases: "8–12"
+  minimum_expert_raters: 3
+  minimum_double_scored_fraction: 0.25
+  steps:
+    - "Read the brief, evidence, and creator intent before the model response."
+    - "Mark unsupported claims before assigning dimension scores."
+    - "Score only active dimensions; cite one phrase or omission for each score."
+    - "Record the top recommended revision and whether it matches the expert priority."
+    - "Do not reward agreement with personal style preference."
+    - "Adjudicate only after independent scores are locked."
